@@ -1,5 +1,6 @@
 {
 	"greeting": "Roo能为您做什么？",
+	"enableLLMRotation": "LLM组",
 	"task": {
 		"title": "任务",
 		"seeMore": "查看更多",
