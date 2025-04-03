@@ -12,6 +12,8 @@ import { CustomSupportPrompts } from "../../../src/shared/support-prompt"
 import { experimentDefault, ExperimentId } from "../../../src/shared/experiments"
 import { TelemetrySetting } from "../../../src/shared/TelemetrySetting"
 
+// ssj 2025-04-02 添加注释： 是一个 React 上下文提供者，用于管理扩展的状态。它包含了状态定义、状态更新方法和上下文提供逻辑。
+// 它使用 React 的 createContext 函数创建了一个上下文对象，并使用 useState 钩子来管理状态。
 export interface ExtensionStateContextType extends ExtensionState {
 	didHydrateState: boolean
 	showWelcome: boolean
@@ -84,6 +86,8 @@ export interface ExtensionStateContextType extends ExtensionState {
 	pinnedApiConfigs?: Record<string, boolean>
 	setPinnedApiConfigs: (value: Record<string, boolean>) => void
 	togglePinnedApiConfig: (configName: string) => void
+	// ssj 2025-04-02 rotation llm 添加属性定义
+	roo_cline_rotation_enabled: boolean
 }
 
 export const ExtensionStateContext = createContext<ExtensionStateContextType | undefined>(undefined)
@@ -159,6 +163,8 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 		renderContext: "sidebar",
 		maxReadFileLine: 500, // Default max read file line limit
 		pinnedApiConfigs: {}, // Empty object for pinned API configs
+		// ssj 2025-04-02 rotation llm 添加属性定义默认值
+		roo_cline_rotation_enabled: false, // 添加默认值
 	})
 
 	const [didHydrateState, setDidHydrateState] = useState(false)

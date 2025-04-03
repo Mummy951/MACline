@@ -424,6 +424,8 @@ describe("ClineProvider", () => {
 			telemetrySetting: "unset",
 			showRooIgnoredFiles: true,
 			renderContext: "sidebar",
+			// ssj 2025-04-02 rotation llm 添加属性定义
+			roo_cline_rotation_enabled: false, // 添加缺失的属性
 			maxReadFileLine: 500,
 		}
 

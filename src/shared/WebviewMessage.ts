@@ -121,6 +121,8 @@ export interface WebviewMessage {
 		| "maxReadFileLine"
 		| "searchFiles"
 		| "toggleApiConfigPin"
+		// ssj 2025-04-02 rotation llm
+		| "updateRotationEnabled"
 	text?: string
 	disabled?: boolean
 	askResponse?: ClineAskResponse

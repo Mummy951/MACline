@@ -526,6 +526,9 @@ export const globalSettingsSchema = z.object({
 	showRooIgnoredFiles: z.boolean().optional(),
 	maxReadFileLine: z.number().optional(),
 
+	// ssj 2025-04-02 rotation llm 添加属性定义
+	roo_cline_rotation_enabled: z.boolean().optional(), // 添加这个属性
+
 	terminalOutputLineLimit: z.number().optional(),
 	terminalShellIntegrationTimeout: z.number().optional(),
 
@@ -595,6 +598,10 @@ const globalSettingsRecord: GlobalSettingsRecord = {
 	maxWorkspaceFiles: undefined,
 	showRooIgnoredFiles: undefined,
 	maxReadFileLine: undefined,
+
+	// ssj 2025-04-02 rotation llm 添加属性定义
+	// RooCodeSettings 类型会自动包含这个新属性，因为它是由 GlobalSettings & ProviderSettings 组成的。
+	roo_cline_rotation_enabled: undefined, // 添加这个属性
 
 	terminalOutputLineLimit: undefined,
 	terminalShellIntegrationTimeout: undefined,

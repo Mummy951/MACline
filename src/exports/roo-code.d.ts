@@ -245,6 +245,7 @@ type GlobalSettings = {
 	maxWorkspaceFiles?: number | undefined
 	showRooIgnoredFiles?: boolean | undefined
 	maxReadFileLine?: number | undefined
+	roo_cline_rotation_enabled?: boolean | undefined
 	terminalOutputLineLimit?: number | undefined
 	terminalShellIntegrationTimeout?: number | undefined
 	rateLimitSeconds?: number | undefined

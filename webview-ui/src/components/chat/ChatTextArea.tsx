@@ -73,6 +73,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 			cwd,
 			pinnedApiConfigs,
 			togglePinnedApiConfig,
+			roo_cline_rotation_enabled: rotationEnabled, // 添加这一行
 		} = useExtensionState()
 
 		// Find the ID and display text for the currently selected API configuration
@@ -975,7 +976,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 						<div className={cn("flex-1", "min-w-0", "overflow-hidden")}>
 							<SelectDropdown
 								value={currentConfigId}
-								disabled={textAreaDisabled}
+								disabled={textAreaDisabled || rotationEnabled} // 添加rotationEnabled条件
 								title={t("chat:selectApiConfig")}
 								placeholder={displayName} // Always show the current name
 								options={[
@@ -1073,6 +1074,28 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 									)
 								}}
 							/>
+						</div>
+
+						{/** ssj 2025-04-02 添加LLM请求组复选框 rotation llm */}
+						<div className="flex items-center mt-1 text-xs">
+							<input
+								type="checkbox"
+								id="rotation-toggle"
+								className="mr-1"
+								checked={rotationEnabled}
+								onChange={() => {
+									const newValue = !rotationEnabled
+									vscode.postMessage({ type: "updateRotationEnabled", bool: newValue })
+									// 当启用轮换时，自动取消当前选中的配置，ask或code 旁边的llm单选模式被禁用
+									if (newValue) {
+										vscode.postMessage({ type: "loadApiConfigurationById", text: "" })
+									}
+								}}
+								disabled={textAreaDisabled}
+							/>
+							<label htmlFor="rotation-toggle" className="cursor-pointer">
+								{t("chat:enableLLMRotation")}
+							</label>
 						</div>
 					</div>
 
