@@ -88,6 +88,8 @@ export interface ExtensionStateContextType extends ExtensionState {
 	togglePinnedApiConfig: (configName: string) => void
 	// ssj 2025-04-02 rotation llm 添加属性定义
 	roo_cline_rotation_enabled: boolean
+	// ssj 2025-04-02 rotation llm 添加属性定义
+	setRooClineRotationEnabled: (value: boolean) => void // 添加setter类型定义
 }
 
 export const ExtensionStateContext = createContext<ExtensionStateContextType | undefined>(undefined)
@@ -333,6 +335,9 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 
 				return { ...prevState, pinnedApiConfigs: newPinned }
 			}),
+		// ssj 2025-04-02 rotation llm 添加属性定义
+		setRooClineRotationEnabled: (value) =>
+			setState((prevState) => ({ ...prevState, roo_cline_rotation_enabled: value })),
 	}
 
 	return <ExtensionStateContext.Provider value={contextValue}>{children}</ExtensionStateContext.Provider>
